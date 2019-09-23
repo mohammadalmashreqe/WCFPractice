@@ -13,7 +13,7 @@ namespace WcfServiceLibrary1
 
         static DAL Instance;
         static SqlConnection sqlConnection;
-        static string ConnectionString= @"Data Source=LP-MOHAMMADYM\SQLEXPRESS;Initial Catalog=TestDb;Integrated Security=True";
+        static string ConnectionString = @"Data Source=LP-MOHAMMADYM\SQLEXPRESS;Initial Catalog=TestDb;Integrated Security=True";
         /// <summary>
         /// constructer to establish the connection
         /// </summary>
