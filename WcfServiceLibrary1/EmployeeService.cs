@@ -10,7 +10,7 @@ namespace WcfServiceLibrary1
 {
     public class EmployeeService : IEmployeeService
     {
-        public bool insertEmployee(Employee newEmp)
+        public bool  insertEmployee(Employee newEmp)
         {
             DAL dal = null; 
             try
@@ -22,18 +22,21 @@ namespace WcfServiceLibrary1
                 param[1] = new SqlParameter("@_age", newEmp.Age);
                 dal.myExcute("SP_ADDEmployee", param);
                 dal.Close();
+            
             }
             catch (Exception ex)
             {
-          
+                return false; 
 
             }
             finally
             {
                 if(dal!=null)
                 dal.Close();
+             
             }
-            return false ;
+            return true;
+
         }
 
         bool IEmployeeService.editEmployeeByID(int id, Employee newVal)
