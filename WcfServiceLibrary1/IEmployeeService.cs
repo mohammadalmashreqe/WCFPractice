@@ -8,31 +8,35 @@ using System.Text;
 namespace WcfServiceLibrary1
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-    [ServiceContract]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName = "ServiceReference1.IEmployeeService")]
     public interface IEmployeeService
     {
-        [OperationContract]
-         List<Employee> getEmployees();
 
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEmployeeService/getEmployees", ReplyAction = "http://tempuri.org/IEmployeeService/getEmployeesResponse")]
+        System.Collections.Generic.List<WcfServiceLibrary1.Employee> getEmployees();
 
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEmployeeService/getEmployee", ReplyAction = "http://tempuri.org/IEmployeeService/getEmployeeResponse")]
+        WcfServiceLibrary1.Employee getEmployee(int ID);
 
-        [OperationContract]
-        Employee getEmployee(int ID);
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEmployeeService/editEmployeeByID", ReplyAction = "http://tempuri.org/IEmployeeService/editEmployeeByIDResponse")]
+        bool editEmployeeByID(int id, WcfServiceLibrary1.Employee newVal);
 
-        [OperationContract]
-        bool editEmployeeByID(int id, Employee newVal);
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEmployeeService/insertEmployee", ReplyAction = "http://tempuri.org/IEmployeeService/insertEmployeeResponse")]
+        bool insertEmployee(WcfServiceLibrary1.Employee newEmp);
 
-        [OperationContract]
-        bool insertEmployee(Employee newEmp);
-
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IEmployeeService/deleteEmployee", ReplyAction = "http://tempuri.org/IEmployeeService/deleteEmployeeResponse")]
+        bool deleteEmployee(int ID);
     }
 
-   
+
     [DataContract]
     public class Employee
     {
+        int id = 0;
         string  name = "";
         int  age = 0;
+        
 
         [DataMember]
         public string  Name
@@ -40,7 +44,12 @@ namespace WcfServiceLibrary1
             get { return name; }
             set { name = value; }
         }
-
+        [DataMember]
+        public int ID
+        {
+            get { return id; }
+            set { id= value; }
+        }
         [DataMember]
         public int  Age
         {
